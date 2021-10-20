@@ -1,0 +1,78 @@
+body {
+	background: linear-gradient(-45deg, #f4cccc, #f9b9b9, #eab1b1, #ef8787, #d68d8d);
+	background-size: 400% 400%;
+	position: relative;
+	font-family: 'Courier New';
+	font-size: 18px;
+}
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+	position: relative;
+}
+img.avatar {
+	width: 15%;
+	border-radius: 20%;
+}
+input[type=text],
+input[type=password] {
+	border-radius: 10px;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+button {
+	font-family: 'Courier New';
+	font-size: 15px;
+	display: flex;
+	text-align: center;
+	background-color: #87CEEB;
+	border-radius: 12px;
+	color: black;
+	padding: 14px 20px;
+	margin: 0 auto;
+	border: none;
+	cursor: pointer;
+	width: 15%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input [type=checkbox] {
+    font-family: 'Courier New';
+    color: black;
+    font-size: 15px;
+}
+.container {
+	padding: 16px;
+}
+.modal-content {
+	border-radius: 12px;
+	background: white;
+	margin: 5% auto 15% auto;
+	border: 1px solid #888;
+	width: 80%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
+}
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+	from {
+		-webkit-transform: scale(0)
+	}
+	to {
+		-webkit-transform: scale(1)
+	}
+}
+@keyframes animatezoom {
+	from {
+		transform: scale(0)
+	}
+	to {
+		transform: scale(1)
+	}
+}

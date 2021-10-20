@@ -1,0 +1,102 @@
+* FULL */
+body {
+	--color-light: white;
+	--color-dark: #212121;
+	--color-signal: #fab700;
+	--color-background: var(--color-light);
+	--color-text: var(--color-dark);
+	--color-accent: var(--color-signal);
+	--size-bezel: .5rem;
+	--size-radius: 4px;
+	line-height: 1.4;
+	background: linear-gradient(-45deg, #f4cccc, #f9b9b9, #eab1b1, #ef8787, #d68d8d);
+	background-size: 400% 400%;
+	position: relative;
+	animation: change 10s ease-in-out infinite;
+	font-family: 'Courier New';
+	font-size: 18px;
+	color: var(--color-text);
+	padding: 0 calc(var(--size-bezel) * 3);
+}
+input[type=text],
+input[type=password] {
+	border-radius: 10px;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+button {
+	font-family: 'Courier New';
+	font-size: 15px;
+	display: flex;
+	text-align: center;
+	background-color: #87CEEB;
+	border-radius: 12px;
+	color: black;
+	padding: 14px 20px;
+	margin: 0 auto;
+	border: none;
+	cursor: pointer;
+	width: 15%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+	position: relative;
+}
+img.avatar {
+	width: 15%;
+	border-radius: 20%;
+}
+.container {
+	padding: 16px;
+}
+h2.headertekst {
+	text-align: center;
+}
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	padding-top: 60px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.modal-content {
+	border-radius: 12px;
+	background: white;
+	margin: 5% auto 15% auto;
+	border: 1px solid #888;
+	width: 80%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+	from {
+		-webkit-transform: scale(0)
+	}
+	to {
+		-webkit-transform: scale(1)
+	}
+}
+@keyframes animatezoom {
+	from {
+		transform: scale(0)
+	}
+	to {
+		transform: scale(1)
+	}
+}

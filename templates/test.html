@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="http://127.0.0.1:5000/"><img src="https://i.ibb.co/VBwQqyH/uub8y3.png" alt="logo" width=100 length=100></a> </p>
+<section class="modal-content animate">
+   <div class="container">
+        <h2 class="title-headline">List product(s) found!</h2>
+        <div class="compare-table">
+            <div class="product-found-table">
+                <div class="image-wrapper">
+                    <img alt="product" src="https://du5jhqks4kn0y.cloudfront.net/5d7889182ff8f000702bcb08/b287c465-139b-b166-5845-8df58d9b2af8.jpg" width=150" height="150">
+                </div>
+                <div class="device-content">
+                    <h3>
+                        <span>Diet Coke Cans</span>
+                    </h3>
+                    <p>Price: {{price}}</span></p>
+                    <a>0.111 per unit</a><br>
+                    <a href="https://groceries.morrisons.com/products/-363293011">Click here to buy!</a>
+                </div>
+            </div>
+        </div>            
+    </div>
+</section>
+{% endblock %}
