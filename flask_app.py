@@ -26,7 +26,6 @@ status = ""
 @app.route('/')
 def home():
     try:
-        print(session['usr'])
         if session['usr'] != None:
             return render_template("dashboard.html")
         else: 
@@ -37,7 +36,6 @@ def home():
 @app.route('/login', methods=['GET'])
 def logindash():
     try:
-        print(session['usr'])
         if session['usr'] != None:
             return render_template("dashboard.html")
         else:
@@ -48,7 +46,6 @@ def logindash():
 @app.route('/signup', methods=['GET'])
 def signupdash():
     try:
-        print(session['usr'])
         if session['usr'] != None:
             return render_template("dashboard.html")
         else:
@@ -63,7 +60,6 @@ def tos():
 @app.route('/dashboard')
 def dashboard():
     try:
-        print(session['usr'])
         if session['usr'] != None:
             return render_template("dashboard.html")
         else:
@@ -110,12 +106,11 @@ def logout():
         session['usr'] = None
         return redirect(url_for('home'))
     except KeyError:
-        pass
+        return render_template('welcome.html')
 
 @app.route('/results')
 def result():
     try:
-        print(session['usr'])
         if session['usr'] != None:
             return render_template("result.html")
         else: 
