@@ -21,4 +21,3 @@ def quicksort(array, begin=0, end=None):
 array = [0.1,0.2,0.7,1.5,2.0,15,10,0.9,1.8,2.3,7.6]
 quicksort(array)
 print(array)
-#TEST
