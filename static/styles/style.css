@@ -24,6 +24,12 @@ input[type=password] {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
+div[class=card] {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+}
 button {
 	font-family: 'Courier New';
 	font-size: 15px;
