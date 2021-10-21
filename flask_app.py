@@ -4,6 +4,10 @@ from threading import Timer
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as soup
 from werkzeug.utils import html
+from modules.iceland import Iceland
+from modules.morrisons import Morrisons
+from modules.sainsbury import Sainsbury
+from modules.tesco import Tesco
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -112,7 +116,7 @@ def logout():
 def result():
     try:
         if session['usr'] != None:
-            return render_template("result.html")
+            return render_template("test.html")
         else: 
             raise KeyError
     except KeyError:
