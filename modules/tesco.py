@@ -37,7 +37,6 @@ def Tesco(productInput,filterOption):
                         tescoItems.append({'store': 'Tesco', 'name': productName, 'url': productLink, 'image': productImage, 'price': '£' + productPrice})
                         i = i + 1
                     except Exception as e:
-                        print(e)
                         pass
                 if filterOption == "lowest":
                     tescoItems = sorted(tescoItems,key=lambda x: x['price'])
@@ -45,7 +44,6 @@ def Tesco(productInput,filterOption):
                     tescoItems = sorted(tescoItems,key=lambda x: x['price'], reverse=True)
                 return tescoItems
         except Exception as e:
-            print(e)
             if filterOption == "lowest":
                 tescoItems = sorted(tescoItems,key=lambda x: x['price'])
             else:

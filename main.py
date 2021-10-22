@@ -129,16 +129,16 @@ def getItems(productInput,filterOption):
     tescoObject = Tesco(productInput,filterOption)
 
     totalItems = []
-    if icelandObject == None:
-        totalItems = list(itertools.chain(morrisonsObject,sainsburyObject,tescoObject))
-    elif morrisonsObject == None:
-        totalItems = list(itertools.chain(icelandObject,sainsburyObject,tescoObject))
-    elif sainsburyObject == None:
-        totalItems = list(itertools.chain(icelandObject,morrisonsObject,tescoObject))
-    elif tescoObject == None: 
-        totalItems = list(itertools.chain(icelandObject,morrisonsObject,sainsburyObject))
+    if icelandObject != None:
+        totalItems.extend(icelandObject)
+    if morrisonsObject != None:
+        totalItems.extend(morrisonsObject)
+    if sainsburyObject != None:
+        totalItems.extend(sainsburyObject)
+    if tescoObject != None: 
+        totalItems.extend(tescoObject)
     else:
-        totalItems = list(itertools.chain(icelandObject,morrisonsObject,sainsburyObject,tescoObject))
+        pass
 
     if filterOption == "lowest":
         totalItems = sorted(totalItems,key=lambda x: x['price'])
