@@ -14,6 +14,11 @@ img.avatar {
 	width: 15%;
 	border-radius: 20%;
 }
+option {
+	position: relative;
+	font-family: 'Courier New';
+	font-size: 18px;
+}
 input[type=text],
 input[type=password] {
 	border-radius: 10px;

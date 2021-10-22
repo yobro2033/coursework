@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json
 
-def Sainsbury(productInput):
+def Sainsbury(productInput,filterOption):
     productInput = productInput
     productURLInput = productInput.replace(" ","%20")
     my_url = 'https://www.sainsburys.co.uk/groceries-api/gol-services/product/v1/product?filter[keyword]=' + productURLInput
@@ -18,4 +18,8 @@ def Sainsbury(productInput):
             productPrice = str(productPrice)
             sainsburyItems.append({'store': 'Sainsbury', 'name': productName, 'url': productLink, 'image': productImage, 'price': '£' + productPrice})
             i = i + 1
+        if filterOption == "lowest":
+            sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'])
+        else:
+            sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'], reverse=True)
         return sainsburyItems

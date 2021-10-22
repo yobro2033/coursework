@@ -115,19 +115,18 @@ def logout():
 @app.route('/search', methods=['POST'])
 def searchmodule():
     productInput = request.form["productInput"]
-    if productInput != None:
-        items = getItems(productInput)
-        print(productInput)
-        print(items)
+    filterOption = request.form["filterOption"]
+    if productInput != None and filterOption != None:
+        items = getItems(productInput, filterOption)
         return render_template("result.html", items=items)
     else:
         pass
 
-def getItems(productInput):
-    icelandObject = Iceland(productInput)
-    morrisonsObject = Morrisons(productInput)
-    sainsburyObject = Sainsbury(productInput)
-    tescoObject = Tesco(productInput)
+def getItems(productInput,filterOption):
+    icelandObject = Iceland(productInput,filterOption)
+    morrisonsObject = Morrisons(productInput,filterOption)
+    sainsburyObject = Sainsbury(productInput,filterOption)
+    tescoObject = Tesco(productInput,filterOption)
 
     totalItems = []
     if icelandObject == None:
@@ -141,6 +140,10 @@ def getItems(productInput):
     else:
         totalItems = list(itertools.chain(icelandObject,morrisonsObject,sainsburyObject,tescoObject))
 
+    if filterOption == "lowest":
+        totalItems = sorted(totalItems,key=lambda x: x['price'])
+    else:
+        totalItems = sorted(totalItems,key=lambda x: x['price'], reverse=True)
     return totalItems
 
 def open_browser():

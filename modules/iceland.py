@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json
 
-def Iceland(productInput):
+def Iceland(productInput,filterOption):
     productInput = productInput
     productURLInput = productInput.replace(" ","%20")
     my_url = 'https://www.iceland.co.uk/search?q=' + productURLInput
@@ -31,9 +31,17 @@ def Iceland(productInput):
                     productUnitPrice = productPrice1.replace("\n", "")
                     icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productImage, 'price': '£' + productPrice})
                     i = i+1
+                if filterOption == "lowest":
+                    icelandItems = sorted(icelandItems,key=lambda x: x['price'])
+                else:
+                    icelandItems = sorted(icelandItems,key=lambda x: x['price'], reverse=True)
                 return icelandItems
         except Exception as e:
             print(e)
+            if filterOption == "lowest":
+                icelandItems = sorted(icelandItems,key=lambda x: x['price'])
+            else:
+                icelandItems = sorted(icelandItems,key=lambda x: x['price'], reverse=True)
             return icelandItems
     else:
         print(responseCode)
