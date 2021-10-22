@@ -1,2 +1,5 @@
 gunicorn
 Flask
+pyrebase
+Werkzeug
+more-itertools
