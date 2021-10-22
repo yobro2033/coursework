@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import pyrebase, webbrowser, requests, json, os, datetime
+import re
 from threading import Timer
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as soup
@@ -77,7 +78,7 @@ def signup():
     try:
         email = request.form['email']
         password = request.form['password']
-        status = authe.create_user_with_email_and_password(email, password)
+        status = authe.create_user_with_email_and_password(email, password) #Using pyrebase REST API
         return redirect(url_for('logindash'))
     except requests.exceptions.HTTPError as e:
         error_json = e.args[1]
@@ -93,7 +94,7 @@ def verify():
         password = request.form["password"]
         error = None
         try:
-            user = authe.sign_in_with_email_and_password(email, password)
+            user = authe.sign_in_with_email_and_password(email, password) #Using pyrebase REST API
             user = authe.refresh(user['refreshToken'])
             user_id = user['idToken']
             session['usr'] = user_id
@@ -114,6 +115,8 @@ def logout():
 @app.route('/search', methods=['POST'])
 def searchmodule():
     productInput = request.form["productInput"]
+    productInput = str(productInput)
+    productInput = removeSC(productInput)
     filterOption = request.form["filterOption"]
     if productInput != None and filterOption != None:
         items = getItems(productInput, filterOption)
@@ -121,6 +124,7 @@ def searchmodule():
     else:
         pass
 
+#Collect the items with input product by using the module from modules folder then short with user's option
 def getItems(productInput,filterOption):
     icelandObject = Iceland(productInput,filterOption)
     morrisonsObject = Morrisons(productInput,filterOption)
@@ -145,6 +149,12 @@ def getItems(productInput,filterOption):
         totalItems = sorted(totalItems,key=lambda x: x['price'], reverse=True)
     return totalItems
 
+# Remove special characters to prevent crashes
+def removeSC(productInput):
+    productInput = re.sub('[^a-zA-Z.\d\s]', '', productInput)
+    return productInput
+
+#Auto open browser as soon as users run the program
 def open_browser():
       webbrowser.open_new('http://127.0.0.1:5000/')
 
