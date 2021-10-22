@@ -1,5 +1,5 @@
 **Price Checker**<br />
-An application to search for input products across several supermarkets' e-commerce to return price, detail of products
+A web application to search for input products across several supermarkets' e-commerce to return price, detail of products.
 <br /><br />
 **Requirements**<br />
 Please make sure to install the following package in order to run an application:<br />
