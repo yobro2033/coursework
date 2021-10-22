@@ -19,7 +19,7 @@ def Iceland(productInput):
                     productLinkContainer = container.find("div",{"class":"product-image"})
                     productLinkItem = productLinkContainer.a["href"]
                     productName = productLinkContainer.a["title"]
-                    productImage = productLinkContainer.a.picture.img["src"]
+                    productImage = productLinkContainer.a.picture.img["data-src"]
                     price_container = container.find("span",{"class":"product-sales-price"})
                     productPrice1 = price_container.text
                     productPrice1 = str(productPrice1)
@@ -29,7 +29,7 @@ def Iceland(productInput):
                     productUnitPrice1 = unitprice_container.text
                     productUnitPrice1 = str(productUnitPrice1)
                     productUnitPrice = productPrice1.replace("\n", "")
-                    icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productLinkContainer, 'price': '£' + productPrice})
+                    icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productImage, 'price': '£' + productPrice})
                     i = i+1
                 return icelandItems
         except Exception as e:
