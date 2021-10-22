@@ -8,7 +8,6 @@ from modules.iceland import Iceland
 from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
-import itertools
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)

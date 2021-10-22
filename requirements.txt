@@ -1,5 +1,7 @@
 gunicorn
 Flask
-pyrebase
+pyrebase4
 Werkzeug
-more-itertools
+requests
+beautifulsoup4
+urllib3
