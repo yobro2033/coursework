@@ -39,30 +39,6 @@ div[class=card] {
 	font-size: 13px;
 	box-sizing: border-box;
 }
-/* Float four columns side by side */
-.column {
-	float: left;
-	width: 25%;
-	padding: 0 10px;
-}
-  /* Remove extra left and right margins, due to padding in columns */
-.row {
-	margin: 0 -5px;
-}
-  /* Clear floats after the columns */
-.row:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-  /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-	.column {
-	  width: 100%;
-	  display: block;
-	  margin-bottom: 20px;
-	}
-}
 button {
 	font-family: 'Courier New';
 	font-size: 15px;
