@@ -8,6 +8,7 @@ from modules.iceland import Iceland
 from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
+import itertools
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -116,20 +117,11 @@ def searchmodule():
     productInput = request.form["productInput"]
     if productInput != None:
         items = getItems(productInput)
+        print(productInput)
         print(items)
-        return render_template("items.html", items=items)
+        return render_template("result.html", items=items)
     else:
         pass
-
-@app.route('/results')
-def result():
-    try:
-        if session['usr'] != None:
-            return render_template("test.html")
-        else: 
-            raise KeyError
-    except KeyError:
-        return render_template('welcome.html')
 
 def getItems(productInput):
     icelandObject = Iceland(productInput)
@@ -138,12 +130,18 @@ def getItems(productInput):
     tescoObject = Tesco(productInput)
 
     totalItems = []
-    icelandItems = []
-    morrisonsItems = []
-    sainsburyItems = []
-    tescoItems = []
+    if icelandObject == None:
+        totalItems = list(itertools.chain(morrisonsObject,sainsburyObject,tescoObject))
+    elif morrisonsObject == None:
+        totalItems = list(itertools.chain(icelandObject,sainsburyObject,tescoObject))
+    elif sainsburyObject == None:
+        totalItems = list(itertools.chain(icelandObject,morrisonsObject,tescoObject))
+    elif tescoObject == None: 
+        totalItems = list(itertools.chain(icelandObject,morrisonsObject,sainsburyObject))
+    else:
+        totalItems = list(itertools.chain(icelandObject,morrisonsObject,sainsburyObject,tescoObject))
 
-    return sainsburyObject
+    return totalItems
 
 def open_browser():
       webbrowser.open_new('http://127.0.0.1:5000/')

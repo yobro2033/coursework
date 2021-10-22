@@ -29,6 +29,7 @@ div[class=card] {
 	max-width: 300px;
 	margin: auto;
 	text-align: center;
+	font-size: 13px;
 }
 button {
 	font-family: 'Courier New';

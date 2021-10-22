@@ -13,23 +13,25 @@ def Iceland(productInput):
             productListFound = soup(response.text, 'html.parser')
             containers = productListFound.findAll("div",{"class":"product-tile"})
             icelandItems = []
-            for container in containers:
-                productLinkContainer = container.find("div",{"class":"product-image"})
-                productLinkItem = productLinkContainer.a["href"]
-                productName = productLinkContainer.a["title"]
-                productImage = productLinkContainer.a.picture.img["src"]
-                price_container = container.find("span",{"class":"product-sales-price"})
-                productPrice1 = price_container.text
-                productPrice1 = str(productPrice1)
-                productPrice2 = productPrice1.replace("\n", "")
-                productPrice = productPrice2.replace("£", "")
-                unitprice_container = container.find("div",{"class":"product-pricing-info"})
-                productUnitPrice1 = unitprice_container.text
-                productUnitPrice1 = str(productUnitPrice1)
-                productUnitPrice = productPrice1.replace("\n", "")
-                row = ['Iceland',productName,productLinkItem,productPrice,productImage,productUnitPrice]
-                icelandItems.append(row)
-            return icelandItems
+            i = 0
+            while i < 11:
+                for container in containers:
+                    productLinkContainer = container.find("div",{"class":"product-image"})
+                    productLinkItem = productLinkContainer.a["href"]
+                    productName = productLinkContainer.a["title"]
+                    productImage = productLinkContainer.a.picture.img["src"]
+                    price_container = container.find("span",{"class":"product-sales-price"})
+                    productPrice1 = price_container.text
+                    productPrice1 = str(productPrice1)
+                    productPrice2 = productPrice1.replace("\n", "")
+                    productPrice = productPrice2.replace("£", "")
+                    unitprice_container = container.find("div",{"class":"product-pricing-info"})
+                    productUnitPrice1 = unitprice_container.text
+                    productUnitPrice1 = str(productUnitPrice1)
+                    productUnitPrice = productPrice1.replace("\n", "")
+                    icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productLinkContainer, 'price': '£' + productPrice})
+                    i = i+1
+                return icelandItems
         except Exception as e:
             print(e)
             return icelandItems

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as soup
 import json
-
+productInput = "Banana"
 def Tesco(productInput):
     productInput = productInput
     productURLInput = productInput.replace(" ","+")
@@ -14,31 +14,37 @@ def Tesco(productInput):
             productListFound = soup(response.text, 'html.parser')
             containers = productListFound.findAll("div",{"class":"product-tile-wrapper"})
             tescoItems = []
-            for container in containers:
-                productLinkContainer = container.find("a",{"class":"product-image-wrapper"})
-                productLinkItem = productLinkContainer["href"]
-                productLink = 'https://www.tesco.com' + productLinkItem
-                productImage = container.find("div",{"class":"product-image__container"}).find('img')["src"]
-                productName = container.find("div",{"class":"product-image__container"}).find('img')["alt"]
-                productPrice1 = container.find('div',{'class':'price-details--wrapper'})
-                try:
-                    productPrice2 = productPrice1.find('div' ,{'class': ''})
-                    productPrice3 = productPrice2.find('span', {'class': 'value'})
-                    productPrice = productPrice3.text
-                    productPrice = float(productPrice)
-                    unitprice_container = container.find("div",{"class":"price-per-quantity-weight"})
-                    productUnitPrice = unitprice_container.span.text
-                    productUnitPrice = str(productUnitPrice)
-                    unitprice_weight_container = unitprice_container.find("span",{"class":"weight"})
-                    unitprice_weight = unitprice_weight_container.text
-                    unitprice_weight = str(unitprice_weight)
-                    row = ['Tesco',productName,productLink,productPrice,productImage,productUnitPrice]
-                    tescoItems.append(row)
-                except Exception as e:
-                    pass
-            return tescoItems
+            i = 0
+            while i < 11:
+                for container in containers:
+                    productLinkContainer = container.find("a",{"class":"product-image-wrapper"})
+                    productLinkItem = productLinkContainer["href"]
+                    productLink = 'https://www.tesco.com' + productLinkItem
+                    productImage = container.find("div",{"class":"product-image__container"}).find('img')["src"]
+                    productName = container.find("div",{"class":"product-image__container"}).find('img')["alt"]
+                    productPrice1 = container.find('div',{'class':'price-details--wrapper'})
+                    try:
+                        productPrice2 = productPrice1.find('div' ,{'class': ''})
+                        productPrice3 = productPrice2.find('span', {'class': 'value'})
+                        productPrice = productPrice3.text
+                        productPrice = str(productPrice)
+                        unitprice_container = container.find("div",{"class":"price-per-quantity-weight"})
+                        productUnitPrice = unitprice_container.span.text
+                        productUnitPrice = str(productUnitPrice)
+                        unitprice_weight_container = unitprice_container.find("span",{"class":"weight"})
+                        unitprice_weight = unitprice_weight_container.text
+                        unitprice_weight = str(unitprice_weight)
+                        tescoItems.append({'store': 'Tesco', 'name': productName, 'url': productLink, 'image': productImage, 'price': '£' + productPrice})
+                        i = i + 1
+                    except Exception as e:
+                        print(e)
+                        pass
+                print(tescoItems)
+                return tescoItems
         except Exception as e:
             print(e)
             return tescoItems
     else:
         print(responseCode)
+
+Tesco(productInput)

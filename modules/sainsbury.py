@@ -8,19 +8,14 @@ def Sainsbury(productInput):
     my_url = 'https://www.sainsburys.co.uk/groceries-api/gol-services/product/v1/product?filter[keyword]=' + productURLInput
     response = requests.get(my_url).json()
     sainsburyItems = []
-    for departure in response['products']:
-        productLink = departure['full_url']
-        productName = departure['name']
-        productImage = departure['image']
-        productPrice = departure['retail_price']['price']
-        productPrice = float(productPrice)
-        productUnitPrice = departure['unit_price']['price']
-        productUnitPrice = str(productUnitPrice)
-        productUnitAmount = departure['unit_price']['measure_amount']
-        productUnitAmount = str(productUnitAmount)
-        productUnitMeasure = departure['unit_price']['measure']
-        productUnitMeasure = str(productUnitMeasure)
-        unitPrice = str(productUnitPrice + productUnitAmount + productUnitMeasure)
-        row = ['Sainsbury',productName,productLink,productPrice,productImage,unitPrice]
-        sainsburyItems.append(row)
-    return sainsburyItems
+    i = 0
+    while i < 11:
+        for departure in response['products']:
+            productLink = departure['full_url']
+            productName = departure['name']
+            productImage = departure['image']
+            productPrice = departure['retail_price']['price']
+            productPrice = str(productPrice)
+            sainsburyItems.append({'store': 'Sainsbury', 'name': productName, 'url': productLink, 'image': productImage, 'price': '£' + productPrice})
+            i = i + 1
+        return sainsburyItems
