@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
-<p><a href="http://127.0.0.1:5000/"><img src="https://i.ibb.co/VBwQqyH/uub8y3.png" alt="logo" width=100 length=100></a> </p>
+<p><a href="http://127.0.0.1:5000/"><img src="https://i.ibb.co/VBwQqyH/uub8y3.png" alt="logo" width=100 length=100></a></p>
+<div style="position: absolute; top: 10; right: 10;"><button style="background-color:red; width: 80px; height: 80px" onclick="document.location.href = 'http://127.0.0.1:5000/logout'"><img src="https://icons.veryicon.com/png/o/miscellaneous/unicons/sign-out-alt-1.png" alt="logout" width="40" height="40" class="center"></button></div>
 <form class="modal-content animate" action="/search" method="post">
    <div class="container">
       <h2 style="text-align:center">You're ready to use Price Checker!</h2>
-      <button onclick="document.location.href = 'http://127.0.0.1:5000/logout'">Log out</button><br>
+      <button style="text-align:center" onclick="document.location.href = 'http://127.0.0.1:5000/wishlist'">Your wishlist</button><br>
       <div style="text-align:center">
          <label for="filterOption">Sort by:</label>
          <select name="filterOption" id="filterOption">
@@ -12,7 +13,7 @@
             <option value="highest">Highest to lowest</option>
          </select>
          <input type="text" placeholder="Enter product you're looking for" name="productInput" required><br>
-         <button type="submit">Search</button>
+         <button type="submit" style="text-align:center">Search</button>
       </div>
    </div>
 </form>
