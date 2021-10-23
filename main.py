@@ -157,6 +157,7 @@ def getItems(productInput,filterOption):
         totalItems = sorted(totalItems,key=lambda x: x['price'], reverse=True)
     return totalItems
 
+#Save wishlist to json file
 @app.route('/wishlist', methods=["POST"])
 def wishlist():
     wishlistObject = ""
