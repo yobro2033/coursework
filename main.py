@@ -9,6 +9,7 @@ from modules.iceland import Iceland
 from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
+from wishlist.wishlistAPI import addNew
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -27,6 +28,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 authe = firebase.auth()
 db = firebase.database()
 status = ""
+currentUser = ""
 
 @app.route('/')
 def home():
@@ -75,10 +77,12 @@ def dashboard():
 @app.route('/insert', methods=['POST'])
 def signup():
     error = None
+    global currentUser
     try:
         email = request.form['email']
         password = request.form['password']
         status = authe.create_user_with_email_and_password(email, password) #Using pyrebase REST API
+        currentUser = email
         return redirect(url_for('logindash'))
     except requests.exceptions.HTTPError as e:
         error_json = e.args[1]
@@ -89,9 +93,11 @@ def signup():
 @app.route('/verify', methods=['POST', 'GET'])
 def verify():
     error = ""
+    global currentUser
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
+        currentUser = email
         error = None
         try:
             user = authe.sign_in_with_email_and_password(email, password) #Using pyrebase REST API
@@ -106,8 +112,10 @@ def verify():
 
 @app.route('/logout')
 def logout():
+    global currentUser
     try:
         session['usr'] = None
+        currentUser = ""
         return redirect(url_for('home'))
     except KeyError:
         return render_template('welcome.html')
@@ -148,6 +156,20 @@ def getItems(productInput,filterOption):
     else:
         totalItems = sorted(totalItems,key=lambda x: x['price'], reverse=True)
     return totalItems
+
+@app.route('/wishlist', methods=["POST"])
+def wishlist():
+    wishlistObject = ""
+    email = currentUser
+    try:
+        name = request.form['productName']
+        url = request.form['productURL']
+        wishlistObject = addNew(email, url, name)
+        return wishlistObject
+    except Exception as e:
+        print(e)
+        pass
+    return wishlistObject
 
 # Remove special characters to prevent crashes
 def removeSC(productInput):
