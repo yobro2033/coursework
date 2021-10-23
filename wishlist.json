@@ -1,14 +1,18 @@
 {
     "wishlist": [
         {
-            "email": "test@email.com",
-            "url": "https://test.html/",
-            "name": "Test"
-        },
-        {
             "email": "random@yahoo.co.uk",
             "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/sainsburys-braeburn-apple-single",
-            "name": "Sainsbury's Braeburn Apple Single"
+            "name": "Sainsbury's Braeburn Apple Single",
+            "store": "Sainsburys",
+            "image": "https://assets.sainsburys-groceries.co.uk/gol/6617773/1/150x150.jpg"
+        },
+        {
+            "email": "vietquocphan203@yahoo.co.uk",
+            "url": "https://groceries.morrisons.com/products/-290551011",
+            "name": "Coca Cola Regular",
+            "store": "Morrisons",
+            "image": "https://groceries.morrisons.com/productImages/290/290551011_0_640x640.jpg"
         }
     ]
 }

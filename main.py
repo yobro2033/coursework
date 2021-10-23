@@ -165,7 +165,9 @@ def wishlist():
     try:
         name = request.form['productName']
         url = request.form['productURL']
-        wishlistObject = addNew(email, url, name)
+        store = request.form['productStore']
+        image = request.form['productImage']
+        wishlistObject = addNew(email, url, name, store, image)
         return wishlistObject
     except Exception as e:
         print(e)

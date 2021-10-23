@@ -13,6 +13,8 @@
             <p>Price: {{item['price']}}</p>
             <p>Store: {{item['store']}}</p>
             <form action="/wishlist" method="post">
+                <input type="hidden" id="productStore" name="productStore" value="{{item['store']}}">
+                <input type="hidden" id="productImage" name="productImage" value="{{item['image']}}">
                 <input type="hidden" id="productName" name="productName" value="{{item['name']}}">
                 <input type="hidden" id="productURL" name="productURL" value="{{item['url']}}">
                 <button type="submit" onClick="{{ url_for('wishlist') }}">Wishlist</button>
