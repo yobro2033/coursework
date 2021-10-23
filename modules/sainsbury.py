@@ -10,16 +10,20 @@ def Sainsbury(productInput,filterOption):
     sainsburyItems = []
     i = 0
     while i < 11:
-        for departure in response['products']:
-            productLink = departure['full_url']
-            productName = departure['name']
-            productImage = departure['image']
-            productPrice = departure['retail_price']['price']
-            productPrice = str(productPrice)
-            sainsburyItems.append({'store': 'Sainsbury', 'name': productName, 'url': productLink, 'image': productImage, 'price': '£' + productPrice})
-            i = i + 1
-        if filterOption == "lowest":
-            sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'])
-        else:
-            sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'], reverse=True)
-        return sainsburyItems
+        try:
+            for departure in response['products']:
+                productLink = departure['full_url']
+                productName = departure['name']
+                productImage = departure['image']
+                productPrice = departure['retail_price']['price']
+                productPrice = str(productPrice)
+                sainsburyItems.append({'store': 'Sainsbury', 'name': productName, 'url': productLink, 'image': productImage, 'price': productPrice})
+                i = i + 1
+            if filterOption == "lowest":
+                sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'])
+            else:
+                sainsburyItems = sorted(sainsburyItems,key=lambda x: x['price'], reverse=True)
+            return sainsburyItems
+        except Exception as e:
+            print(e)
+            return sainsburyItems

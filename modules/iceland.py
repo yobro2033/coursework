@@ -25,11 +25,11 @@ def Iceland(productInput,filterOption):
                     productPrice1 = str(productPrice1)
                     productPrice2 = productPrice1.replace("\n", "")
                     productPrice = productPrice2.replace("£", "")
-                    unitprice_container = container.find("div",{"class":"product-pricing-info"})
-                    productUnitPrice1 = unitprice_container.text
-                    productUnitPrice1 = str(productUnitPrice1)
-                    productUnitPrice = productPrice1.replace("\n", "")
-                    icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productImage, 'price': '£' + productPrice})
+                    #unitprice_container = container.find("div",{"class":"product-pricing-info"})
+                    #productUnitPrice1 = unitprice_container.text
+                    #productUnitPrice1 = str(productUnitPrice1)
+                    #productUnitPrice = productPrice1.replace("\n", "")
+                    icelandItems.append({'store': 'Iceland', 'name': productName, 'url': productLinkItem, 'image': productImage, 'price': productPrice})
                     i = i+1
                 if filterOption == "lowest":
                     icelandItems = sorted(icelandItems,key=lambda x: x['price'])

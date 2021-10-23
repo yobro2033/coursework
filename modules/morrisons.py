@@ -29,7 +29,7 @@ def Morrisons(productInput,filterOption):
                                 productImage = 'https://groceries.morrisons.com/productImages/116/116564011_0_640x640.jpg'
                                 productPrice = container['product']['price']['current']
                                 productPrice = str(productPrice)
-                                morrisonsItems.append({'store': 'Morrisons', 'name': productName, 'url': productLink, 'image': productURL, 'price': '£' + productPrice})
+                                morrisonsItems.append({'store': 'Morrisons', 'name': productName, 'url': productLink, 'image': productURL, 'price': productPrice})
                                 i = i + 1
                             else:
                                 pass

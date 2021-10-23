@@ -10,7 +10,7 @@
                 <img src="{{item['image']}}" alt="{{item['name']}}" style="width: 100%">
             </a>
             <h2>{{item['name']}}</h2>
-            <p>Price: {{item['price']}}</p>
+            <p>Price: £{{item['price']}}</p>
             <p>Store: {{item['store']}}</p>
             <form action="/addWishlist" method="post">
                 <input type="hidden" id="productStore" name="productStore" value="{{item['store']}}">

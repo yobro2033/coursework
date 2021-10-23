@@ -129,6 +129,11 @@ def searchmodule():
     filterOption = request.form["filterOption"]
     if productInput != None and filterOption != None:
         items = getItems(productInput, filterOption)
+        items = formatList(items)
+        if filterOption == "lowest":
+            items = sorted(items,key=lambda x: x['price'])
+        else:
+            items = sorted(items,key=lambda x: x['price'], reverse=True)
         return render_template("result.html", items=items)
     else:
         pass
@@ -152,10 +157,6 @@ def getItems(productInput,filterOption):
     else:
         pass
 
-    if filterOption == "lowest":
-        totalItems = sorted(totalItems,key=lambda x: x['price'])
-    else:
-        totalItems = sorted(totalItems,key=lambda x: x['price'], reverse=True)
     return totalItems
 
 #Save wishlist to json file
@@ -184,6 +185,15 @@ def displayWL():
 def removeSC(productInput):
     productInput = re.sub('[^a-zA-Z.\d\s]', '', productInput)
     return productInput
+
+#format the price into float to sort
+def formatList(items):
+    for item in items:
+        try:
+            item['price'] = float(item['price'])
+        except:
+            pass
+    return items
 
 #Auto open browser as soon as users run the program
 def open_browser():
