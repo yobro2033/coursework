@@ -2,7 +2,7 @@
 A web application to search for input products across several supermarkets' e-commerce to return price, detail of products.
 <br /><br />
 **Requirements**<br />
-Please make sure to install the following package in order to run an application:<br />
+Please make sure to install the following packages in order to run an application:<br />
 ```pip install Flask```<br />
 ```pip3 install pyrebase4```<br />
 ```pip install Werkzeug```<br />
