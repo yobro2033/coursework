@@ -10,7 +10,9 @@ def displayWishlist(currentUser):
         if h['email'] == currentUser:
             url = h['url']
             name = h['name']
-            wishlistdata.append({'url': url, 'name': name})
+            store = h['store']
+            image = h['image']
+            wishlistdata.append({'url': url, 'name': name, 'store': store, 'image': image})
         else:
             pass
     return wishlistdata

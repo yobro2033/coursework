@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="http://127.0.0.1:5000/"><img src="https://i.ibb.co/VBwQqyH/uub8y3.png" alt="logo" width=100 length=100></a> </p>
+<section class="modal-content animate">
+   <div class="container">
+        <h2 class="title-headline" style="text-align:center">Your wishlist</h2>
+        <table id="wishlisttable" style="width:100%">
+            <tr>
+                <th>Store</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>URL</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <th>{{item['store']}}</th>
+                <th><img src="{{item['image']}}" alt="{{item['name']}}" width="120" height="120"></img></th>
+                <th>{{item['name']}}</th>
+                <th><a href="{{item['url']}}">Click here!</a></th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock %}

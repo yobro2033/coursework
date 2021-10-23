@@ -59,6 +59,28 @@ input [type=checkbox] {
     color: black;
     font-size: 15px;
 }
+#wishlisttable {
+	font-family: 'Courier New';
+	border-collapse: collapse;
+	width: 100%;
+}
+#wishlisttable td, #wishlisttable th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+#wishlisttable tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+#wishlisttable tr:hover {
+	background-color: #ddd;
+}
+#wishlisttable th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #F8F8F8;
+	color: black;
+}
 .container {
 	padding: 16px;
 }

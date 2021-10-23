@@ -10,6 +10,7 @@ from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
 from wishlist.wishlistAPI import addNew
+from wishlist.displaywishlist import displayWishlist
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -158,7 +159,7 @@ def getItems(productInput,filterOption):
     return totalItems
 
 #Save wishlist to json file
-@app.route('/wishlist', methods=["POST"])
+@app.route('/addWishlist', methods=["POST"])
 def wishlist():
     wishlistObject = ""
     email = currentUser
@@ -167,12 +168,17 @@ def wishlist():
         url = request.form['productURL']
         store = request.form['productStore']
         image = request.form['productImage']
-        wishlistObject = addNew(email, url, name, store, image)
-        return wishlistObject
+        addWishlist = addNew(email, url, name, store, image)
+        return redirect(url_for('displayWL'))
     except Exception as e:
         print(e)
         pass
-    return wishlistObject
+    return addWishlist
+
+@app.route('/wishlist')
+def displayWL():
+    items = displayWishlist(currentUser)
+    return render_template("wishlist.html", items=items)
 
 # Remove special characters to prevent crashes
 def removeSC(productInput):

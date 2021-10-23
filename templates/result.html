@@ -12,7 +12,7 @@
             <h2>{{item['name']}}</h2>
             <p>Price: {{item['price']}}</p>
             <p>Store: {{item['store']}}</p>
-            <form action="/wishlist" method="post">
+            <form action="/addWishlist" method="post">
                 <input type="hidden" id="productStore" name="productStore" value="{{item['store']}}">
                 <input type="hidden" id="productImage" name="productImage" value="{{item['image']}}">
                 <input type="hidden" id="productName" name="productName" value="{{item['name']}}">
