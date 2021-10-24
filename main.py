@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import pyrebase, webbrowser, requests, json, os, datetime
-import re
+import pyrebase, webbrowser, requests, json, os, datetime, re
 from threading import Timer
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as soup
