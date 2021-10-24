@@ -111,16 +111,6 @@ def verify():
             error = json.loads(error_json)['error']['message']
     return render_template("login_form.html", error=error)
 
-@app.route('/logout')
-def logout():
-    global currentUser
-    try:
-        session['usr'] = None
-        currentUser = ""
-        return redirect(url_for('home'))
-    except KeyError:
-        return render_template('welcome.html')
-
 @app.route('/search', methods=['POST'])
 def searchmodule():
     productInput = request.form["productInput"]
@@ -137,27 +127,6 @@ def searchmodule():
         return render_template("result.html", items=items)
     else:
         pass
-
-#Collect the items with input product by using the module from modules folder then short with user's option
-def getItems(productInput,filterOption):
-    icelandObject = Iceland(productInput,filterOption)
-    morrisonsObject = Morrisons(productInput,filterOption)
-    sainsburyObject = Sainsbury(productInput,filterOption)
-    tescoObject = Tesco(productInput,filterOption)
-
-    totalItems = []
-    if icelandObject != None:
-        totalItems.extend(icelandObject)
-    if morrisonsObject != None:
-        totalItems.extend(morrisonsObject)
-    if sainsburyObject != None:
-        totalItems.extend(sainsburyObject)
-    if tescoObject != None: 
-        totalItems.extend(tescoObject)
-    else:
-        pass
-
-    return totalItems
 
 #Save wishlist to json file
 @app.route('/addWishlist', methods=["POST"])
@@ -176,17 +145,57 @@ def wishlist():
         pass
     return addWishlist
 
+#Display wishlist
 @app.route('/wishlist')
 def displayWL():
-    items = displayWishlist(currentUser)
-    return render_template("wishlist.html", items=items)
+    try:
+        if session['usr'] != None:
+            items = displayWishlist(currentUser)
+            return render_template("wishlist.html", items=items)
+        else: 
+            raise KeyError
+    except KeyError:
+        return render_template('welcome.html')
+
+@app.route('/logout')
+def logout():
+    global currentUser
+    try:
+        session['usr'] = None
+        currentUser = ""
+        return redirect(url_for('home'))
+    except KeyError:
+        return render_template('welcome.html')
+
+#Collect the items with input product by using the module from modules folder then short with user's option
+def getItems(productInput,filterOption):
+    #Get the returned list items found from 4 modules imported
+    icelandObject = Iceland(productInput,filterOption)
+    morrisonsObject = Morrisons(productInput,filterOption)
+    sainsburyObject = Sainsbury(productInput,filterOption)
+    tescoObject = Tesco(productInput,filterOption)
+
+    #It will then add it into 1 total list
+    totalItems = []
+    if icelandObject != None:
+        totalItems.extend(icelandObject)
+    if morrisonsObject != None:
+        totalItems.extend(morrisonsObject)
+    if sainsburyObject != None:
+        totalItems.extend(sainsburyObject)
+    if tescoObject != None: 
+        totalItems.extend(tescoObject)
+    else:
+        pass
+
+    return totalItems
 
 # Remove special characters to prevent crashes
 def removeSC(productInput):
-    productInput = re.sub('[^a-zA-Z.\d\s]', '', productInput)
+    productInput = re.sub('[^a-zA-Z.\d\s]', '', productInput) #[^a-zA-Z.\d\s] means remove all special character apart from space
     return productInput
 
-#format the price into float to sort
+#format the price fro string into float to sort
 def formatList(items):
     for item in items:
         try:
@@ -199,6 +208,7 @@ def formatList(items):
 def open_browser():
       webbrowser.open_new('http://127.0.0.1:5000/')
 
+#Attempt to run the program, open the browser
 if __name__ == "__main__":
       Timer(1, open_browser).start();
       app.run(port=5000)
