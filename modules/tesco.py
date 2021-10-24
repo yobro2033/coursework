@@ -28,12 +28,6 @@ def Tesco(productInput,filterOption):
                         productPrice3 = productPrice2.find('span', {'class': 'value'})
                         productPrice = productPrice3.text
                         productPrice = str(productPrice)
-                        unitprice_container = container.find("div",{"class":"price-per-quantity-weight"})
-                        productUnitPrice = unitprice_container.span.text
-                        productUnitPrice = str(productUnitPrice)
-                        #unitprice_weight_container = unitprice_container.find("span",{"class":"weight"})
-                        #unitprice_weight = unitprice_weight_container.text
-                        #unitprice_weight = str(unitprice_weight)
                         tescoItems.append({'store': 'Tesco', 'name': productName, 'url': productLink, 'image': productImage, 'price': productPrice})
                         i = i + 1
                     except Exception as e:

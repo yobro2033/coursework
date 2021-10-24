@@ -14,7 +14,7 @@ from wishlist.displaywishlist import displayWishlist
 from offers.icelandoffers import IcelandOffer
 from offers.morrisonsoffers import MorrisonsOffer
 from offers.sainsburysoffers import SainsburysOffer
-
+from offers.tescooffers import TescoOffer
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 firebaseConfig = {
@@ -210,6 +210,7 @@ def getOffers():
     icelandOffer = IcelandOffer()
     morrisonsOffer = MorrisonsOffer()
     sainsburysOffer = SainsburysOffer()
+    tescoOffer = TescoOffer()
 
     totalItems = []
     if icelandOffer != None:
@@ -218,6 +219,8 @@ def getOffers():
         totalItems.extend(morrisonsOffer)
     if sainsburysOffer != None:
         totalItems.extend(sainsburysOffer)
+    if tescoOffer != None:
+        totalItems.extend(tescoOffer)
     else:
         pass
 
