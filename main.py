@@ -195,6 +195,7 @@ def displayOffers():
     except KeyError:
         return render_template('welcome.html')
 
+#remove session, logged out user
 @app.route('/logout')
 def logout():
     global currentUser
