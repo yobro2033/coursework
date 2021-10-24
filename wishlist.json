@@ -1,28 +1,28 @@
 {
     "wishlist": [
         {
-            "email": "random@yahoo.co.uk",
+            "email": "removed",
             "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/sainsburys-braeburn-apple-single",
             "name": "Sainsbury's Braeburn Apple Single",
             "store": "Sainsburys",
             "image": "https://assets.sainsburys-groceries.co.uk/gol/6617773/1/150x150.jpg"
         },
         {
-            "email": "vietquocphan203@yahoo.co.uk",
+            "email": "removed",
             "url": "https://groceries.morrisons.com/products/-290551011",
             "name": "Coca Cola Regular",
             "store": "Morrisons",
             "image": "https://groceries.morrisons.com/productImages/290/290551011_0_640x640.jpg"
         },
         {
-            "email": "vietquocphan203@yahoo.co.uk",
+            "email": "removed",
             "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/piriteze-allergy-syrup-70ml",
             "name": "Piriteze Allergy & Hayfever Syrup Sugar Free Banana Flavour 70ml",
             "store": "Sainsbury",
             "image": "https://www.sainsburys.co.uk/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/productImages/09/5000347007309/5000347007309_L.jpeg"
         },
         {
-            "email": "vietquocphan203@yahoo.co.uk",
+            "email": "removed",
             "url": "https://groceries.morrisons.com/products/-290551011",
             "name": "Coca Cola Regular",
             "store": "Morrisons",
@@ -139,6 +139,27 @@
             "name": "Cadbury Twirl Chocolate Bar Multipack x11 236.5g",
             "store": "Sainsbury",
             "image": "https://www.sainsburys.co.uk/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/productImages/15/7622210989215/7622210989215_L.jpeg"
+        },
+        {
+            "email": "2374268@gmail.com",
+            "url": "https://groceries.morrisons.com/products/-357593011",
+            "name": "Corona Extra Premium Lager Beer bottles",
+            "store": "Morrisons",
+            "image": "https://groceries.morrisons.com/productImages/357/357593011_0_640x640.jpg"
+        },
+        {
+            "email": "2374268@gmail.com",
+            "url": "https://groceries.morrisons.com/products/-497515011",
+            "name": "Dr Pepper ",
+            "store": "Morrisons",
+            "image": "https://groceries.morrisons.com/productImages/497/497515011_0_640x640.jpg"
+        },
+        {
+            "email": "vietquocphan203@yahoo.co.uk",
+            "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/diet-coke-caffeine-free-24x330ml",
+            "name": "Diet Coke Caffeine Free 24x330ml",
+            "store": "Sainsbury",
+            "image": "https://www.sainsburys.co.uk/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/productImages/16/5449000294616/5449000294616_L.jpeg"
         }
     ]
 }

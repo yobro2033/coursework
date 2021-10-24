@@ -15,6 +15,7 @@ from offers.icelandoffers import IcelandOffer
 from offers.morrisonsoffers import MorrisonsOffer
 from offers.sainsburysoffers import SainsburysOffer
 from offers.tescooffers import TescoOffer
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 firebaseConfig = {
@@ -159,6 +160,28 @@ def displayWL():
             raise KeyError
     except KeyError:
         return render_template('welcome.html')
+
+#remove wishlist
+@app.route('/removeWishlist', methods=["POST"])
+def removeWishlist():
+    global currentUser
+    currentUser = str(currentUser)
+    try:
+        productName = request.form['name']
+        with open('wishlist.json') as json_data:
+            datas = json.load(json_data)
+            elements = datas['wishlist']
+            for data in elements:
+                if data['email'] == currentUser and data['name'] == productName:
+                    data['email'] = 'removed'
+                else:
+                    pass
+        with open('wishlist.json','w') as file:
+            json.dump(datas, file, indent = 4)
+        return redirect(url_for('displayWL'))
+    except Exception as e:
+        print(e)
+        pass
 
 #Display offers
 @app.route('/offers')

@@ -11,13 +11,20 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>URL</th>
+                <th>Remove</th>
             </tr>
             {% for item in items %}
             <tr>
                 <th>{{item['store']}}</th>
                 <th width="120" height="120"><img src="{{item['image']}}" alt="{{item['name']}}" height="100%" style="text-align:center"></th>
-                <th>{{item['name']}}</th>
+                <th id="name" name="name">{{item['name']}}</th>
                 <th><a href="{{item['url']}}">Click here!</a></th>
+                <th>
+                    <form action="/removeWishlist" method="post">
+                        <input type="hidden" id="name" name="name" value="{{item['name']}}">
+                        <button type="submit" onClick="{{ url_for('removeWishlist') }}" style="background-color: orangered; width: 60px; height: 50px""><img src="/static/image/remove.png" alt="logout" width="20" height="20" class="center"></button>
+                    </form>
+                </th>
             </tr>
             {% endfor %}
         </table>
