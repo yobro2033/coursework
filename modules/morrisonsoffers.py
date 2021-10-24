@@ -16,7 +16,7 @@ def MorrisonsOffer():
                 imageContainer = container.img['src']
                 image = 'https://groceries.morrisons.com/' + imageContainer
                 title = "Check website"
-                morrisonsOffer.append({'store': 'Iceland', 'title': title, 'url': link, 'image': image})
+                morrisonsOffer.append({'store': 'Morrisons', 'title': title, 'url': link, 'image': image})
             except Exception as e:
                 print(e)
                 pass

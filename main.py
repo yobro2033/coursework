@@ -11,6 +11,9 @@ from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
 from wishlist.wishlistAPI import addNew
 from wishlist.displaywishlist import displayWishlist
+from modules.icelandoffers import IcelandOffer
+from modules.morrisonsoffers import MorrisonsOffer
+from modules.sainsburysoffers import SainsburysOffer
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -157,6 +160,18 @@ def displayWL():
     except KeyError:
         return render_template('welcome.html')
 
+#Display offers
+@app.route('/offers')
+def displayOffers():
+    try:
+        if session['usr'] != None:
+            items = getOffers()
+            return render_template("offers.html", items=items)
+        else: 
+            raise KeyError
+    except KeyError:
+        return render_template('welcome.html')
+
 @app.route('/logout')
 def logout():
     global currentUser
@@ -185,6 +200,24 @@ def getItems(productInput,filterOption):
         totalItems.extend(sainsburyObject)
     if tescoObject != None: 
         totalItems.extend(tescoObject)
+    else:
+        pass
+
+    return totalItems
+
+#Collect offers available from e-commerce websites
+def getOffers():
+    icelandOffer = IcelandOffer()
+    morrisonsOffer = MorrisonsOffer()
+    sainsburysOffer = SainsburysOffer()
+
+    totalItems = []
+    if icelandOffer != None:
+        totalItems.extend(icelandOffer)
+    if morrisonsOffer != None:
+        totalItems.extend(morrisonsOffer)
+    if sainsburysOffer != None:
+        totalItems.extend(sainsburysOffer)
     else:
         pass
 

@@ -39,6 +39,13 @@ div[class=card] {
 	margin-bottom: 20px;
 	font-size: 13px;
 }
+#outer {
+    width:100%;
+    text-align: center;
+}
+.inner {
+    display: inline-block;
+}
 button {
 	font-family: 'Courier New';
 	font-size: 15px;

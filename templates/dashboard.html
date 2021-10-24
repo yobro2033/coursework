@@ -5,7 +5,11 @@
 <form class="modal-content animate" action="/search" method="post">
    <div class="container">
       <h2 style="text-align:center">You're ready to use Price Checker!</h2>
-      <button style="text-align:center" onclick="document.location.href = 'http://127.0.0.1:5000/wishlist'">Your wishlist</button><br>
+      <div id="outer">
+         <div class="inner"><button style="text-align:center" onclick="document.location.href = 'http://127.0.0.1:5000/wishlist'">Your wishlist</button></div>
+         <div class="inner"><button style="text-align:center" onclick="document.location.href = 'http://127.0.0.1:5000/offers'">Offers available</button></div>
+      </div>
+      <br>
       <div style="text-align:center">
          <label for="filterOption">Sort by:</label>
          <select name="filterOption" id="filterOption">

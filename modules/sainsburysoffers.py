@@ -29,3 +29,5 @@ def SainsburysOffer():
         return sainsburyOffer
     else:
         print(response)
+
+SainsburysOffer()
