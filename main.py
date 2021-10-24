@@ -11,9 +11,9 @@ from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
 from wishlist.wishlistAPI import addNew
 from wishlist.displaywishlist import displayWishlist
-from modules.icelandoffers import IcelandOffer
-from modules.morrisonsoffers import MorrisonsOffer
-from modules.sainsburysoffers import SainsburysOffer
+from offers.icelandoffers import IcelandOffer
+from offers.morrisonsoffers import MorrisonsOffer
+from offers.sainsburysoffers import SainsburysOffer
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
