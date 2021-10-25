@@ -20,6 +20,7 @@ def TescoOffer():
                 tescoOffer.append({'store': 'Tesco', 'title': title, 'url': link, 'image': image})
             return tescoOffer
         except Exception as e:
+            print(e)
             return tescoOffer
     else:
         print(responseCode)
