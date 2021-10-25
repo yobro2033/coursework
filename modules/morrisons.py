@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json
 
-def Morrisons(productInput,filterOption):
+def Morrisons(productInput):
     productInput = productInput
     productURLInput = productInput.replace(" ","%20")
     my_url = 'https://groceries.morrisons.com/webshop/api/v1/search?searchTerm=' + productURLInput
@@ -33,19 +33,11 @@ def Morrisons(productInput,filterOption):
                                 i = i + 1
                             else:
                                 pass
-                if filterOption == "lowest":
-                    morrisonsItems = sorted(morrisonsItems,key=lambda x: x['price'])
-                else:
-                    morrisonsItems = sorted(morrisonsItems,key=lambda x: x['price'], reverse=True)
                 return morrisonsItems
             else:
                 print("Not available!")
         except Exception as e:
             print(e)
-            if filterOption == "lowest":
-                morrisonsItems = sorted(morrisonsItems,key=lambda x: x['price'])
-            else:
-                morrisonsItems = sorted(morrisonsItems,key=lambda x: x['price'], reverse=True)
             return morrisonsItems
     else:
         print(responseCode)
