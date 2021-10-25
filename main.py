@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import pyrebase, webbrowser, requests, json, os, datetime, re
+import pyrebase, webbrowser, requests, json, os, datetime
+import re
 from threading import Timer
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as soup
@@ -17,6 +18,8 @@ from offers.tescooffers import TescoOffer
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+#Firebase config, get the config from firebase's dashboard setting
 firebaseConfig = {
     "apiKey": "AIzaSyBeOr7f2Il4mMNL2WHoKE7CcxuNKu2LS7I",
     "authDomain": "pricechecker-bb931.firebaseapp.com",
@@ -37,6 +40,7 @@ currentUser = ""
 @app.route('/')
 def home():
     try:
+        #use to check user's session valid
         if session['usr'] != None:
             return render_template("dashboard.html")
         else: 
@@ -92,13 +96,14 @@ def signup():
         error_json = e.args[1]
         error = json.loads(error_json)['error']['message']
         error_code = json.loads(error_json)['error']['code']
-        return render_template('signup_form.html', error=error)
+        return render_template('signup_form.html', error=error) #Redirect back to the signup page and display error getting from firebase's api
 
 @app.route('/verify', methods=['POST', 'GET'])
 def verify():
     error = ""
     global currentUser
     if request.method == "POST":
+        #request the info sent through POST method from the form
         email = request.form["email"]
         password = request.form["password"]
         currentUser = email
@@ -107,6 +112,7 @@ def verify():
             user = authe.sign_in_with_email_and_password(email, password) #Using pyrebase REST API
             user = authe.refresh(user['refreshToken'])
             user_id = user['idToken']
+            #Assign the user's session
             session['usr'] = user_id
             return redirect(url_for('dashboard'))
         except requests.exceptions.HTTPError as e:
@@ -121,8 +127,11 @@ def searchmodule():
     productInput = removeSC(productInput)
     filterOption = request.form["filterOption"]
     if productInput != None and filterOption != None:
-        items = getItems(productInput, filterOption)
+        #execute the get items function to retrieve the product scraped
+        items = getItems(productInput)
+        #change the price into float to sort the list
         items = formatList(items)
+        #sort the price with the given criteria
         if filterOption == "lowest":
             items = sorted(items,key=lambda x: x['price'])
         else:
@@ -131,7 +140,7 @@ def searchmodule():
     else:
         pass
 
-#Save wishlist to json file
+#Save wishlist to json file and redirect to display page
 @app.route('/addWishlist', methods=["POST"])
 def wishlist():
     wishlistObject = ""
@@ -153,7 +162,7 @@ def wishlist():
 def displayWL():
     try:
         if session['usr'] != None:
-            items = displayWishlist(currentUser)
+            items = displayWishlist(currentUser) #read the json file to retrieve the file
             return render_template("wishlist.html", items=items)
         else: 
             raise KeyError
@@ -171,10 +180,13 @@ def removeWishlist():
             datas = json.load(json_data)
             elements = datas['wishlist']
             for data in elements:
+                #change the email to "removed" if the user wished to remove item from wishlist
                 if data['email'] == currentUser and data['name'] == productName:
+                    #changed to "removed" will prevent the program from displaying this item as the email is invalid
                     data['email'] = 'removed'
                 else:
                     pass
+        #write the list back into json file
         with open('wishlist.json','w') as file:
             json.dump(datas, file, indent = 4)
         return redirect(url_for('displayWL'))
@@ -206,12 +218,12 @@ def logout():
         return render_template('welcome.html')
 
 #Collect the items with input product by using the module from modules folder then short with user's option
-def getItems(productInput,filterOption):
+def getItems(productInput):
     #Get the returned list items found from 4 modules imported
-    icelandObject = Iceland(productInput,filterOption)
-    morrisonsObject = Morrisons(productInput,filterOption)
-    sainsburyObject = Sainsbury(productInput,filterOption)
-    tescoObject = Tesco(productInput,filterOption)
+    icelandObject = Iceland(productInput)
+    morrisonsObject = Morrisons(productInput)
+    sainsburyObject = Sainsbury(productInput)
+    tescoObject = Tesco(productInput)
 
     #It will then add it into 1 total list
     totalItems = []
@@ -249,7 +261,7 @@ def getOffers():
 
     return totalItems
 
-# Remove special characters to prevent crashes
+#Remove special characters to prevent crashes
 def removeSC(productInput):
     productInput = re.sub('[^a-zA-Z.\d\s]', '', productInput) #[^a-zA-Z.\d\s] means remove all special character apart from space
     return productInput
