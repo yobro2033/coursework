@@ -21,7 +21,6 @@ def IcelandOffer():
             except Exception as e:
                 print(e)
                 pass
-        print(icelandOffer)
         return icelandOffer
     else:
         print(response)
