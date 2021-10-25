@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json
 
-def Tesco(productInput,filterOption):
+def Tesco(productInput):
     productInput = productInput
     productURLInput = productInput.replace(" ","+")
     my_url = 'https://www.tesco.com/groceries/en-GB/search?query=' + productURLInput
@@ -32,16 +32,9 @@ def Tesco(productInput,filterOption):
                         i = i + 1
                     except Exception as e:
                         pass
-                if filterOption == "lowest":
-                    tescoItems = sorted(tescoItems,key=lambda x: x['price'])
-                else:
-                    tescoItems = sorted(tescoItems,key=lambda x: x['price'], reverse=True)
                 return tescoItems
         except Exception as e:
-            if filterOption == "lowest":
-                tescoItems = sorted(tescoItems,key=lambda x: x['price'])
-            else:
-                tescoItems = sorted(tescoItems,key=lambda x: x['price'], reverse=True)
+            print(e)
             return tescoItems
     else:
         print(responseCode)
