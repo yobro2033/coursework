@@ -20,7 +20,6 @@ def MorrisonsOffer():
             except Exception as e:
                 print(e)
                 pass
-        print(morrisonsOffer)
         return morrisonsOffer
     else:
         print(response)
