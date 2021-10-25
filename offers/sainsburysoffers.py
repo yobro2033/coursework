@@ -25,9 +25,6 @@ def SainsburysOffer():
             except Exception as e:
                 print(e)
                 pass
-        print(sainsburyOffer)
         return sainsburyOffer
     else:
         print(response)
-
-SainsburysOffer()
