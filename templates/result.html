@@ -18,6 +18,7 @@
                 <input type="hidden" id="productImage" name="productImage" value="{{item['image']}}">
                 <input type="hidden" id="productName" name="productName" value="{{item['name']}}">
                 <input type="hidden" id="productURL" name="productURL" value="{{item['url']}}">
+                <input type="hidden" id="productPrice" name="productPrice" value="{{item['price']}}">
                 <button type="submit" onClick="{{ url_for('wishlist') }}">Wishlist</button>
             </form>
         </div>
