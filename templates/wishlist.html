@@ -4,12 +4,14 @@
 <div style="position: absolute; top: 10; right: 10;"><button style="background-color: orangered; width: 80px; height: 70px" onclick="document.location.href = 'http://127.0.0.1:5000/logout'"><img src="/static/image/signout.png" alt="logout" width="40" height="40" class="center"></button></div>
 <section class="modal-content animate">
    <div class="container">
-        <h2 class="title-headline" style="text-align:center">Your wishlist</h2>
+        <h2 class="title-headline" style="text-align:center">Your shopping list</h2>
+        <h3 style="text-align:center">{{counts}} item(s) saved!</h3>
         <table id="wishlisttable" style="width:100%">
             <tr>
                 <th>Store</th>
                 <th>Image</th>
                 <th>Name</th>
+                <th>Price</th>
                 <th>URL</th>
                 <th>Remove</th>
             </tr>
@@ -18,6 +20,7 @@
                 <th>{{item['store']}}</th>
                 <th width="120" height="120"><img src="{{item['image']}}" alt="{{item['name']}}" height="100%" style="text-align:center"></th>
                 <th id="name" name="name">{{item['name']}}</th>
+                <th>£{{item['price']}}</th>
                 <th><a href="{{item['url']}}">Click here!</a></th>
                 <th>
                     <form action="/removeWishlist" method="post">
@@ -27,6 +30,14 @@
                 </th>
             </tr>
             {% endfor %}
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total: £{{priceItems}}</th>
+                <th></th>
+                <th></th>
+            </tr>
         </table>
     </div>
 </section>
