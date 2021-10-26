@@ -1,11 +1,20 @@
 {
     "wishlist": [
         {
-            "email": "random@email.com",
+            "email": "removed",
             "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/sainsburys-braeburn-apple-single",
             "name": "Sainsbury's Braeburn Apple Single",
             "store": "Sainsburys",
-            "image": "https://assets.sainsburys-groceries.co.uk/gol/6617773/1/150x150.jpg"
+            "image": "https://assets.sainsburys-groceries.co.uk/gol/6617773/1/150x150.jpg",
+            "price": "10"
+        },
+        {
+            "email": "removed",
+            "url": "https://www.sainsburys.co.uk/shop/gb/groceries/product/details/sainsburys-braeburn-apple-single",
+            "name": "Sainsbury's Braeburn Apple Single",
+            "store": "Sainsbury",
+            "image": "https://www.sainsburys.co.uk/wcsstore/SainsburysStorefrontAssetStore/wcassets/product_images/media_1195460_L.jpg",
+            "price": "0.3"
         }
     ]
 }
