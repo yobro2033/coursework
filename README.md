@@ -3,12 +3,14 @@ A web application to search for input products across several supermarkets' e-co
 <br /><br />
 **Requirements**<br />
 Please make sure to install the following packages in order to run this application:<br />
-```pip install Flask```<br />
-```pip3 install pyrebase4```<br />
-```pip install Werkzeug```<br />
-```pip install requests```<br />
-```pip install beautifulsoup4```<br />
-```pip install urllib3```<br />
+<br />
+[*Flask*](https://pypi.org/project/Flask/)<br />
+[*pyrebase*](https://pypi.org/project/Pyrebase4/)<br />
+[*Wekzeug*](https://pypi.org/project/Werkzeug/)<br />
+[*requests*](https://pypi.org/project/requests/)<br />
+[*beautifulsoup4*](https://pypi.org/project/beautifulsoup4/)<br />
+[*urllib3*](https://pypi.org/project/urllib3/)<br /><br />
+```pip install -r requirements.txt```<br />
 <br />
 **Store Modules**<br />
 An application will attempt to search input products across 4 main supermarkets' in the UK including [*Sainsburys*](https://www.sainsburys.co.uk/), [*Tesco*](https://tesco.com/), [*Iceland*](https://www.iceland.co.uk/), [*Morrisons*](https://groceries.morrisons.com/).<br />
