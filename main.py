@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import pyrebase, webbrowser, requests, json, os, datetime
-import re
+import pyrebase, webbrowser, requests, json, os, re
 from threading import Timer
-from urllib.error import HTTPError
-from bs4 import BeautifulSoup as soup
 from werkzeug.utils import html
 from modules.iceland import Iceland
 from modules.morrisons import Morrisons
@@ -95,7 +92,7 @@ def signup():
     except requests.exceptions.HTTPError as e:
         error_json = e.args[1]
         error = json.loads(error_json)['error']['message']
-        error_code = json.loads(error_json)['error']['code']
+        error_code = json.loads(error_json)['error']['code'] #get error code
         return render_template('signup_form.html', error=error) #Redirect back to the signup page and display error getting from firebase's api
 
 @app.route('/verify', methods=['POST', 'GET'])
@@ -110,7 +107,7 @@ def verify():
         error = None
         try:
             user = authe.sign_in_with_email_and_password(email, password) #Using pyrebase REST API
-            user = authe.refresh(user['refreshToken'])
+            user = authe.refresh(user['refreshToken']) #get the token
             user_id = user['idToken']
             #Assign the user's session
             session['usr'] = user_id
@@ -143,14 +140,16 @@ def searchmodule():
 #Save wishlist to json file and redirect to display page
 @app.route('/addWishlist', methods=["POST"])
 def wishlist():
-    wishlistObject = ""
     email = currentUser
+    addWishlist = ""
     try:
+        #request the value from form through method post
         name = request.form['productName']
         url = request.form['productURL']
         store = request.form['productStore']
         image = request.form['productImage']
-        addWishlist = addNew(email, url, name, store, image)
+        price = request.form['productPrice']
+        addWishlist = addNew(email, url, name, store, image, price)
         return redirect(url_for('displayWL'))
     except Exception as e:
         print(e)
@@ -163,7 +162,17 @@ def displayWL():
     try:
         if session['usr'] != None:
             items = displayWishlist(currentUser) #read the json file to retrieve the file
-            return render_template("wishlist.html", items=items)
+            totalItems = []
+            counts = 0 #count total items in the list
+            #sum the total price for items in current shopping list
+            for item in items:
+                item['price'] = float(item['price'])
+                newItem = item['price']
+                totalItems.append(newItem)
+                counts = counts + 1
+            priceItems = sum(totalItems)
+            priceItems = str(round(priceItems,2)) #ensure no encountered error in price
+            return render_template("wishlist.html", items=items, priceItems=priceItems, counts=counts)
         else: 
             raise KeyError
     except KeyError:
