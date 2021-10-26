@@ -1,6 +1,6 @@
 import json
 
-def addNew(email,url,name,store,image):
+def addNew(email,url,name,store,image,price):
     def write_json(new_data, filename='wishlist.json'):
         with open(filename,'r+') as file:
             # First we load existing data into a dict.
@@ -17,7 +17,8 @@ def addNew(email,url,name,store,image):
         "url": url,
         "name": name,
         "store": store,
-        "image": image
+        "image": image,
+        "price": price
         }
         
     write_json(newWishlist)
