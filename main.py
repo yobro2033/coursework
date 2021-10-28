@@ -160,6 +160,7 @@ def wishlist():
 @app.route('/wishlist')
 def displayWL():
     try:
+        global currentUser
         if session['usr'] != None:
             items = displayWishlist(currentUser) #read the json file to retrieve the file
             totalItems = []
@@ -173,7 +174,7 @@ def displayWL():
             priceItems = sum(totalItems)
             priceItems = str(round(priceItems,2)) #ensure no encountered error in price
             return render_template("wishlist.html", items=items, priceItems=priceItems, counts=counts)
-        else: 
+        else:
             raise KeyError
     except KeyError:
         return render_template('welcome.html')
