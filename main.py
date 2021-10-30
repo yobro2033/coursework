@@ -6,6 +6,7 @@ from modules.iceland import Iceland
 from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
+from modules.asda import Asda
 from wishlist.wishlistAPI import addNew
 from wishlist.displaywishlist import displayWishlist
 from offers.icelandoffers import IcelandOffer
@@ -152,7 +153,6 @@ def wishlist():
         addWishlist = addNew(email, url, name, store, image, price)
         return redirect(url_for('displayWL'))
     except Exception as e:
-        print(e)
         pass
     return addWishlist
 
@@ -201,7 +201,6 @@ def removeWishlist():
             json.dump(datas, file, indent = 4)
         return redirect(url_for('displayWL'))
     except Exception as e:
-        print(e)
         pass
 
 #Display offers
@@ -234,6 +233,7 @@ def getItems(productInput):
     morrisonsObject = Morrisons(productInput)
     sainsburyObject = Sainsbury(productInput)
     tescoObject = Tesco(productInput)
+    asdaObject = Asda(productInput)
 
     #It will then add it into 1 total list
     totalItems = []
@@ -245,6 +245,8 @@ def getItems(productInput):
         totalItems.extend(sainsburyObject)
     if tescoObject != None: 
         totalItems.extend(tescoObject)
+    if asdaObject != None:
+        totalItems.extend(asdaObject)
     else:
         pass
 
