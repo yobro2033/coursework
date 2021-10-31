@@ -2,8 +2,6 @@ import requests
 from bs4 import BeautifulSoup as soup
 import json
 
-productInput = 'coca cola'
-
 def Asda(productInput):
     productInput = productInput
     productURLInput = productInput.replace(" ","+")
@@ -29,10 +27,7 @@ def Asda(productInput):
                 productPrice = productPrice.replace('£', '')
                 asdaItems.append({'store': 'Asda', 'name': productFullName, 'url': productLink, 'image': productImage, 'price': productPrice})
                 i = i + 1
-            print(asdaItems)
             return asdaItems
         except Exception as e:
             print(e)
             pass
-
-Asda(productInput)

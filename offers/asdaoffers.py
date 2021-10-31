@@ -7,7 +7,7 @@ def AsdaOffer():
     options = Options()
     options.add_argument("--headless")
     #Insert your chromedriver path replace the current chrome driver
-    driver = webdriver.Chrome(options=options, executable_path=r'/Users/quocvietphan/Desktop/coursework/coursework-v2/chromedriver')
+    driver = webdriver.Chrome(options=options, executable_path=r'/Users/quocvietphan/Downloads/chromedriver')
     driver.get("https://groceries.asda.com/special-offers/top-offers") 
     html = driver.page_source
     response = soup(html, 'html.parser')
