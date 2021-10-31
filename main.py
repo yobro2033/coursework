@@ -7,6 +7,7 @@ from modules.morrisons import Morrisons
 from modules.sainsbury import Sainsbury
 from modules.tesco import Tesco
 from modules.asda import Asda
+from modules.ocado import Ocado
 from wishlist.wishlistAPI import addNew
 from wishlist.displaywishlist import displayWishlist
 from offers.icelandoffers import IcelandOffer
@@ -14,6 +15,7 @@ from offers.morrisonsoffers import MorrisonsOffer
 from offers.sainsburysoffers import SainsburysOffer
 from offers.tescooffers import TescoOffer
 from offers.asdaoffers import AsdaOffer
+#from offers.ocadooffers import OcadoOffer
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -229,12 +231,13 @@ def logout():
 
 #Collect the items with input product by using the module from modules folder then short with user's option
 def getItems(productInput):
-    #Get the returned list items found from 5 modules imported
+    #Get the returned list items found from 6 modules imported
     icelandObject = Iceland(productInput)
     morrisonsObject = Morrisons(productInput)
     sainsburyObject = Sainsbury(productInput)
     tescoObject = Tesco(productInput)
     asdaObject = Asda(productInput)
+    ocadoObject = Ocado(productInput)
 
     #It will then add it into 1 total list
     totalItems = []
@@ -248,6 +251,8 @@ def getItems(productInput):
         totalItems.extend(tescoObject)
     if asdaObject != None:
         totalItems.extend(asdaObject)
+    if ocadoObject != None:
+        totalItems.extend(ocadoObject)
     else:
         pass
 
@@ -260,6 +265,7 @@ def getOffers():
     sainsburysOffer = SainsburysOffer()
     tescoOffer = TescoOffer()
     asdaOffer = AsdaOffer()
+#    ocadoOffer = OcadoOffer()
 
     totalItems = []
     if icelandOffer != None:
@@ -272,6 +278,8 @@ def getOffers():
         totalItems.extend(tescoOffer)
     if asdaOffer != None:
         totalItems.extend(asdaOffer)
+#    if ocadoOffer != None:
+#        totalItems.extend(ocadoOffer)
     else:
         pass
 
