@@ -229,7 +229,7 @@ def logout():
 
 #Collect the items with input product by using the module from modules folder then short with user's option
 def getItems(productInput):
-    #Get the returned list items found from 4 modules imported
+    #Get the returned list items found from 5 modules imported
     icelandObject = Iceland(productInput)
     morrisonsObject = Morrisons(productInput)
     sainsburyObject = Sainsbury(productInput)
