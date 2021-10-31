@@ -17,7 +17,7 @@ Please make sure to install the following packages in order to run this applicat
 ```pip install -r requirements.txt```<br />
 <br />
 **Store Modules**<br />
-An application will attempt to search input products across 5 main supermarkets' in the UK including [*Sainsburys*](https://www.sainsburys.co.uk/), [*Tesco*](https://tesco.com/), [*Iceland*](https://www.iceland.co.uk/), [*Morrisons*](https://groceries.morrisons.com/) and [*Asda*](https://groceries.asda.com/).<br />
+An application will attempt to search input products across 6 main supermarkets' in the UK including [*Sainsburys*](https://www.sainsburys.co.uk/), [*Tesco*](https://tesco.com/), [*Iceland*](https://www.iceland.co.uk/), [*Morrisons*](https://groceries.morrisons.com/), [*Asda*](https://groceries.asda.com/) and [*Ocado*](https://www.ocado.com/).<br />
 <br />
 **Authentication API**<br />
 Applying the REST API of [pyrebase](https://github.com/thisbejim/Pyrebase) from [Firebase](https://firebase.google.com/) to integrate the authentication to this application.<br />
