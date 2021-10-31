@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for
 import pyrebase, webbrowser, requests, json, os, re
 from threading import Timer
 from werkzeug.utils import html

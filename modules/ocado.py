@@ -27,6 +27,7 @@ def Ocado(productInput):
         priceContainer = item.find("span",{"class":"fop-price"})
         productPrice = priceContainer.text
         productPrice = str(productPrice)
+        #attempt to format the price in case it's in 50p instead of £0.50
         if "p" in productPrice:
             productPrice = productPrice.replace("p", "")
             productPrice = "0." + productPrice
