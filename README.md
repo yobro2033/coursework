@@ -9,7 +9,7 @@ Please make sure to install the following packages in order to run this applicat
 [*Wekzeug*](https://pypi.org/project/Werkzeug/)<br />
 [*requests*](https://pypi.org/project/requests/)<br />
 [*beautifulsoup4*](https://pypi.org/project/beautifulsoup4/)<br />
-[*urllib3*](https://pypi.org/project/urllib3/)<br /><br />
+[*urllib3*](https://pypi.org/project/urllib3/)<br />
 [*selenium*](https://pypi.org/project/selenium/)<br /><br />
 ```pip install -r requirements.txt```<br />
 <br />
