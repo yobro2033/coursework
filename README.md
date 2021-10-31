@@ -2,7 +2,9 @@
 A web application to search for input products across several supermarkets' e-commerce to return price, detail of products.
 <br /><br />
 **ChromeDriver**<br />
-You will need to download corresponding [Chromedriver](https://chromedriver.chromium.org/downloads) to your chrome version by checking this link **chrome://version**. After installed, you will need to get the path of that ChromeDriver and replace it to the current path inside **offers** folder, **asdaoffers.py**.<br />
+You will need to download corresponding [Chromedriver](https://chromedriver.chromium.org/downloads) to your chrome version by checking this link **chrome://version**. After installed, you will need to get the path of that ChromeDriver and replace it to the current path inside following file:
+<br /><br />**modules** folder, **ocado.py**;<br />
+**offers** folder, **ocadooffers.py** and **asdaoffers.py**;<br />
 <br />
 **Requirements**<br />
 Please make sure to install the following packages in order to run this application:<br />
