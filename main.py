@@ -265,7 +265,7 @@ def getOffers():
     sainsburysOffer = SainsburysOffer()
     tescoOffer = TescoOffer()
     asdaOffer = AsdaOffer()
-#    ocadoOffer = OcadoOffer()
+    #ocadoOffer = OcadoOffer()
 
     totalItems = []
     if icelandOffer != None:
@@ -278,8 +278,8 @@ def getOffers():
         totalItems.extend(tescoOffer)
     if asdaOffer != None:
         totalItems.extend(asdaOffer)
-#    if ocadoOffer != None:
-#        totalItems.extend(ocadoOffer)
+    #if ocadoOffer != None:
+        #totalItems.extend(ocadoOffer)
     else:
         pass
 
