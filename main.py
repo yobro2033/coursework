@@ -13,6 +13,7 @@ from offers.icelandoffers import IcelandOffer
 from offers.morrisonsoffers import MorrisonsOffer
 from offers.sainsburysoffers import SainsburysOffer
 from offers.tescooffers import TescoOffer
+from offers.asdaoffers import AsdaOffer
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -258,6 +259,7 @@ def getOffers():
     morrisonsOffer = MorrisonsOffer()
     sainsburysOffer = SainsburysOffer()
     tescoOffer = TescoOffer()
+    asdaOffer = AsdaOffer()
 
     totalItems = []
     if icelandOffer != None:
@@ -268,6 +270,8 @@ def getOffers():
         totalItems.extend(sainsburysOffer)
     if tescoOffer != None:
         totalItems.extend(tescoOffer)
+    if asdaOffer != None:
+        totalItems.extend(asdaOffer)
     else:
         pass
 
