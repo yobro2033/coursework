@@ -122,7 +122,7 @@ def verify():
     return render_template("login_form.html", error=error)
 
 @app.route('/search', methods=['POST'])
-def searchmodule():
+def search():
     productInput = request.form["productInput"]
     productInput = str(productInput)
     productInput = removeSC(productInput)
