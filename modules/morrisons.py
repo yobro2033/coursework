@@ -26,7 +26,6 @@ def Morrisons(productInput):
                             productURL = 'https://groceries.morrisons.com/productImages/' + headSub + '/' + productSku + '_0_640x640.jpg'
                             if 'product' in container:
                                 productName = container['product']['name']
-                                productImage = 'https://groceries.morrisons.com/productImages/116/116564011_0_640x640.jpg'
                                 productPrice = container['product']['price']['current']
                                 productPrice = str(productPrice)
                                 morrisonsItems.append({'store': 'Morrisons', 'name': productName, 'url': productLink, 'image': productURL, 'price': productPrice})
