@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as soup
-import json
 
 def TescoOffer():
     my_url = 'https://www.tesco.com/groceries/en-GB/promotions'
