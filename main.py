@@ -40,10 +40,11 @@ currentUser = ""
 
 @app.route('/')
 def home():
+    email = currentUser
     try:
         #use to check user's session valid
         if session['usr'] != None:
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", email=email)
         else: 
             raise KeyError
     except KeyError:
@@ -51,9 +52,10 @@ def home():
 
 @app.route('/login', methods=['GET'])
 def logindash():
+    email = currentUser
     try:
         if session['usr'] != None:
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", email=email)
         else:
             raise KeyError
     except KeyError:
@@ -61,9 +63,10 @@ def logindash():
 
 @app.route('/signup', methods=['GET'])
 def signupdash():
+    email = currentUser
     try:
         if session['usr'] != None:
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", email=email)
         else:
             raise KeyError
     except KeyError:
@@ -75,9 +78,10 @@ def tos():
 
 @app.route('/dashboard')
 def dashboard():
+    email = currentUser
     try:
         if session['usr'] != None:
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", email=email)
         else:
             raise KeyError
     except KeyError:
