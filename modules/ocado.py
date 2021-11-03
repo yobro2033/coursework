@@ -15,24 +15,27 @@ def Ocado(productInput):
     html = driver.page_source
     response = soup(html, 'html.parser')
     items = response.find_all("div",{"class":"fop-contentWrapper"})
-    for item in items:
-        linkContainer = item.find('a')
-        linkPrefix = linkContainer['href']
-        productLink = 'https://www.ocado.com' + linkPrefix
-        imageContainer = item.find("div",{"class": "fop-img-wrapper"})
-        imageclass = imageContainer.find('img')
-        imagePrefix = imageclass['src']
-        productImage = 'https://www.ocado.com' + imagePrefix
-        productName = imageclass['alt']
-        priceContainer = item.find("span",{"class":"fop-price"})
-        productPrice = priceContainer.text
-        productPrice = str(productPrice)
-        #attempt to format the price in case it's in 50p instead of £0.50
-        if "p" in productPrice:
-            productPrice = productPrice.replace("p", "")
-            productPrice = "0." + productPrice
-        else:
-            productPrice = productPrice.replace("£", "")
-        ocadoItems.append({'store': 'Ocado', 'name': productName, 'url': productLink, 'image': productImage, 'price': productPrice})
+    i = 0
+    while i < 11:
+        for item in items:
+            linkContainer = item.find('a')
+            linkPrefix = linkContainer['href']
+            productLink = 'https://www.ocado.com' + linkPrefix
+            imageContainer = item.find("div",{"class": "fop-img-wrapper"})
+            imageclass = imageContainer.find('img')
+            imagePrefix = imageclass['src']
+            productImage = 'https://www.ocado.com' + imagePrefix
+            productName = imageclass['alt']
+            priceContainer = item.find("span",{"class":"fop-price"})
+            productPrice = priceContainer.text
+            productPrice = str(productPrice)
+            #attempt to format the price in case it's in 50p instead of £0.50
+            if "p" in productPrice:
+                productPrice = productPrice.replace("p", "")
+                productPrice = "0." + productPrice
+            else:
+                productPrice = productPrice.replace("£", "")
+            ocadoItems.append({'store': 'Ocado', 'name': productName, 'url': productLink, 'image': productImage, 'price': productPrice})
+            i = i + 1
     driver.quit()
     return ocadoItems
