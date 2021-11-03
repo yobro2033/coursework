@@ -1,6 +1,4 @@
 import requests
-from bs4 import BeautifulSoup as soup
-import json
 
 def Sainsbury(productInput):
     productInput = productInput
