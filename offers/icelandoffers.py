@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as soup
-import json
 
 def IcelandOffer():
     my_url = "https://www.iceland.co.uk/offers"
