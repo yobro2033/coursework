@@ -10,7 +10,7 @@ def Ocado(productInput):
     options = Options()
     options.add_argument("--headless")
     #Insert your chromedriver path replace the current chrome driver
-    driver = webdriver.Chrome(options=options, executable_path=r'/Users/quocvietphan/Downloads/chromedriver')
+    driver = webdriver.Chrome(options=options, executable_path=r'/usr/bin/chromedriver')
     driver.get(my_url) 
     html = driver.page_source
     response = soup(html, 'html.parser')
