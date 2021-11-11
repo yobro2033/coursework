@@ -17,8 +17,8 @@ from offers.tescooffers import TescoOffer
 from offers.asdaoffers import AsdaOffer
 #from offers.ocadooffers import OcadoOffer
 
-app = Flask(__name__)
-app.secret_key = os.urandom(24)
+apps = Flask(__name__)
+apps.secret_key = os.urandom(24)
 
 #Firebase config, get the config from firebase's dashboard setting
 firebaseConfig = {
@@ -38,7 +38,7 @@ db = firebase.database()
 status = ""
 currentUser = ""
 
-@app.route('/')
+@apps.route('/')
 def home():
     email = currentUser
     try:
@@ -50,7 +50,7 @@ def home():
     except KeyError:
         return render_template('welcome.html')
 
-@app.route('/login', methods=['GET'])
+@apps.route('/login', methods=['GET'])
 def logindash():
     email = currentUser
     try:
@@ -61,7 +61,7 @@ def logindash():
     except KeyError:
 	    return render_template('login_form.html')
 
-@app.route('/signup', methods=['GET'])
+@apps.route('/signup', methods=['GET'])
 def signupdash():
     email = currentUser
     try:
@@ -72,11 +72,11 @@ def signupdash():
     except KeyError:
 	    return render_template('signup_form.html')
 
-@app.route('/tos')
+@apps.route('/tos')
 def tos():
 	return render_template('termsofservice.html')
 
-@app.route('/dashboard')
+@apps.route('/dashboard')
 def dashboard():
     email = currentUser
     try:
@@ -87,7 +87,7 @@ def dashboard():
     except KeyError:
         return redirect(url_for('logindash'))
 
-@app.route('/insert', methods=['POST'])
+@apps.route('/insert', methods=['POST'])
 def signup():
     error = None
     global currentUser
@@ -103,7 +103,7 @@ def signup():
         error_code = json.loads(error_json)['error']['code'] #get error code
         return render_template('signup_form.html', error=error) #Redirect back to the signup page and display error getting from firebase's api
 
-@app.route('/verify', methods=['POST', 'GET'])
+@apps.route('/verify', methods=['POST', 'GET'])
 def verify():
     error = ""
     global currentUser
@@ -125,7 +125,7 @@ def verify():
             error = json.loads(error_json)['error']['message']
     return render_template("login_form.html", error=error)
 
-@app.route('/search', methods=['POST'])
+@apps.route('/search', methods=['POST'])
 def search():
     productInput = request.form["productInput"]
     productInput = str(productInput)
@@ -146,7 +146,7 @@ def search():
         pass
 
 #Save wishlist to json file and redirect to display page
-@app.route('/addWishlist', methods=["POST"])
+@apps.route('/addWishlist', methods=["POST"])
 def wishlist():
     email = currentUser
     addWishlist = ""
@@ -164,7 +164,7 @@ def wishlist():
     return addWishlist
 
 #Display wishlist
-@app.route('/wishlist')
+@apps.route('/wishlist')
 def displayWL():
     try:
         global currentUser
@@ -187,7 +187,7 @@ def displayWL():
         return render_template('welcome.html')
 
 #remove wishlist
-@app.route('/removeWishlist', methods=["POST"])
+@apps.route('/removeWishlist', methods=["POST"])
 def removeWishlist():
     global currentUser
     currentUser = str(currentUser)
@@ -211,7 +211,7 @@ def removeWishlist():
         pass
 
 #Display offers
-@app.route('/offers')
+@apps.route('/offers')
 def displayOffers():
     try:
         if session['usr'] != None:
@@ -223,7 +223,7 @@ def displayOffers():
         return render_template('welcome.html')
 
 #remove session, logged out user
-@app.route('/logout')
+@apps.route('/logout')
 def logout():
     global currentUser
     try:
