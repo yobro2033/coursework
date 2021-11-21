@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="http://127.0.0.1:5000/"><img src="/static/image/logo.png" alt="logo" width=100 length=100></a></p>
+<h2>Sign up</h2>
+<form class="modal-content animate" action="/insert" method="post">
+   <div class="imgcontainer">
+   </div>
+   <div class="container">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      {% if error %}
+      <p style="color:red;font-size: 18px;" class=error><strong>Error:</strong> {{ error }} </p>
+      {% endif %}
+      <input type="checkbox" onclick="passwordToggle()">Show Password</input>
+      <p style="text-align:center;">By registering, you are agreed all statements in  <a href="http://127.0.0.1:5000/tos" class="term-service">Terms of service</a></p>
+      <button type="submit">Register</button>
+   </div>
+</form>
+{% endblock %}
