@@ -3,7 +3,8 @@
 A web application to search for input products across several supermarkets' e-commerce to return price, detail of products.
 <br />
 # Preview
-[PriceChecker](http://143.47.224.233:5000/)<br /><br />
+[PriceChecker](http://143.47.224.233:5000/)<br />
+Due to the limited of the web server hosted, some modules will not be available including Asda, Ocado etc<br />
 # Chromedriver
 **ChromeDriver**<br />
 You will need to download corresponding [Chromedriver](https://chromedriver.chromium.org/downloads) to your chrome version by checking this link **chrome://version**. After installed, you will need to get the path of that ChromeDriver and replace it to the current path inside following file:
