@@ -34,6 +34,9 @@ The application will also attempt to scrape various offers from supermarkets.<br
 **Wishlist**<br />
 Wishlist module will provide an option for users to save favourite items in a list that temporarily saved in a json file. Within this module, the application will also perform a calculation to sum up the total price within the list.<br />
 <br />
+**HotDeals**<br />
+Attempt to scrape the deals from third party (HotdealsUK) and filter with keywords from user input. Compatible with multiple inputs.
+<br />
 # Databse
 **Authentication API**<br />
 Applying the REST API of [pyrebase](https://github.com/thisbejim/Pyrebase) from [Firebase](https://firebase.google.com/) to integrate the authentication to this application.<br />
