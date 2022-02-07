@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="http://127.0.0.1:5000/"><img src="/static/image/logo.png" alt="logo" width=100 length=100></a></p>
+<div style="position: absolute; top: 10; right: 10;"><button style="background-color: orangered; width: 80px; height: 70px" onclick="document.location.href = 'http://127.0.0.1:5000/logout'"><img src="/static/image/signout.png" alt="logout" width="40" height="40" class="center"></button></div>
+<div class="modal-content animate">
+   <div class="container">
+      <h2 style="text-align:center">You're about to get some good deals!</h2>
+      <form action="/hotdealssearch" method="post">
+         <div style="text-align:center">
+            <input type="text" placeholder="Enter keywords for hot deals (multiples separated by comma)" name="keywords" required><br>
+            <button type="submit" style="text-align:center">Search</button>
+         </div>
+      </form>
+   </div>
+</div>
+{% endblock %}
