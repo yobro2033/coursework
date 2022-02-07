@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+from bs4 import BeautifulSoup
 import pyrebase, webbrowser, requests, json, os, re
 from threading import Timer
 from werkzeug.utils import html
@@ -210,6 +211,36 @@ def removeWishlist():
     except Exception as e:
         pass
 
+#Proceed with the keywords to retrieve data from hotdeals
+@app.route('/hotdeals', methods=['GET'])
+def hotdeals():
+    try:
+        if session['usr'] != None:
+            return render_template("hotdeals.html")
+        else: 
+            raise KeyError
+    except KeyError:
+        return render_template('welcome.html')
+
+#Display hot deals from third-party site
+@app.route('/hotdealssearch', methods=['POST'])
+def hotdealssearch():
+    try:
+        if session['usr'] != None:
+            n=30
+            deals = []
+            for i in range(0,n):
+                deals.extend(getDeals(i+1))
+            sortedDeals = deals
+            keywords = request.form['keywords']
+            keywords = keywords.split(',')
+            sortedDeals = keyFilter(keywords, deals)
+            return render_template("hotdealsresult.html", items=sortedDeals)
+        else: 
+            raise KeyError
+    except KeyError:
+        return render_template('welcome.html')
+
 #Display offers
 @app.route('/offers')
 def displayOffers():
@@ -288,6 +319,43 @@ def getOffers():
         pass
 
     return totalItems
+
+
+#Attempting to scrape deals from third party
+def getDeals(n):
+    dealsList=[]
+    url="https://www.hotukdeals.com/tag/groceries?page={}".format(n)
+    soup = BeautifulSoup(requests.get(url).content,"html5lib")
+    deals = soup.find_all("article")
+    for deal in deals:
+        if "thread--expired" in deal["class"]:
+            continue
+        linkElement = deal.find("a",{"class":"thread-title--list"})
+        title = linkElement["title"]
+        try:
+            href = deal.find("a",{"class":"cept-dealBtn"})["href"]
+            price = deal.find("span",{"class":"thread-price"}).text
+            image = deal.find("img", {"class":"cept-thread-img"})['src']
+        except (AttributeError, TypeError):
+            continue
+        if price == "FREE":
+            price = 0
+        else:
+            try:
+                price = float(price[1:].replace(",",""))
+            except ValueError:
+                continue
+        dealsList.append({"title": title, "price": price, "url": href, "image": image})
+    return dealsList
+
+#Keywords filter for hotdeals
+def keyFilter(keywords,deals):
+    filteredList = []
+    for item in deals:
+        if any(key.lower() in item['title'].lower() for key in keywords):
+            filteredList.append(item)
+    return filteredList
+
 
 #Remove special characters to prevent crashes
 def removeSC(productInput):
